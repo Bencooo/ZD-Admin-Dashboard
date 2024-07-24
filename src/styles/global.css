@@ -1,0 +1,15 @@
+/* src/styles/global.css */
+
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  label {
+    display: block;
+    margin-top: 20px;
+  }
+  
+  h1, h2 {
+    margin-top: 20px;
+  }
+  
