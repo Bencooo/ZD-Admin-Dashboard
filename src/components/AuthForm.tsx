@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { auth } from '../utils/firebaseConfig';
-import { setCookie } from 'nookies';
+import { login } from '../services/auth.service';
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,9 +11,7 @@ const AuthForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const token = await userCredential.user.getIdToken();
-      setCookie(null, 'tokenID', token, { path: '/' });
+      await login(email, password);
       router.push('/home');
     } catch (err) {
       if (err instanceof Error) {
