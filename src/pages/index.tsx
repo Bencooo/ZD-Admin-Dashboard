@@ -7,7 +7,12 @@ const IndexPage: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/login');
+    const tokenID = localStorage.getItem('tokenID');
+    if (tokenID) {
+      router.push('/home');
+    } else {
+      router.push('/login');
+    }
   }, [router]);
 
   return null;
